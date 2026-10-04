@@ -1,0 +1,36 @@
+import tkinter as tk
+from tkinter import messagebox
+
+root = tk.Tk()
+# set title cho chương trình
+root.title("Chuyển độ C sang độ F")
+root.geometry("1000x800")
+
+# nhãn gợi ý
+label_title = tk.Label(root,text="Chuyển độ C sang độ F",font =("Arial",16,"bold"))
+label_title.pack(pady=50)
+
+# Entry để nhập nhiệt độ
+entry_celcius = tk.Entry(root, font=("Arial",13),width=10)
+entry_celcius.pack(pady=10)
+entry_celcius.insert(0,"0")
+
+# tạo callback - lấy gtri từ entry sang float => sang độ F => hiển thị
+def convert_callback():
+    # lấy gtri từ entry
+    try:
+        celcus = float(entry_celcius.get())
+        farenheit = celcus * 1.8 + 32
+        label_result.config(text = f"{farenheit:.2f} °F")
+    except ValueError:
+        messagebox.showerror("Bạn nhập sai rồi, hãy nhập số vào")
+
+# Nút button để animation chuyển đổi sang độ F
+button_convert = tk.Button(root,text="Chuyển đổi",fg="blue",command=convert_callback)
+button_convert.pack(pady=10)
+
+# Tạo label hiển thị kết quả
+label_result = tk.Label(root,text="32 °F",fg="blue")
+label_result.pack(pady=5)
+
+root.mainloop()
